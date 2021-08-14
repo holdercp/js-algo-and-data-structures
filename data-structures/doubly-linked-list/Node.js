@@ -1,0 +1,3 @@
+class Node {
+  constructor(value) {}
+}
