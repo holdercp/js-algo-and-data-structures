@@ -29,12 +29,18 @@ class DoublyLinkedList {
     if (this.length === 0) return undefined;
 
     const poppedNode = this.tail;
-    const newTailNode = poppedNode.previous;
-    poppedNode.previous = null;
 
-    this.tail = newTailNode;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const newTailNode = poppedNode.previous;
+      poppedNode.previous = null;
+      newTailNode.next = null;
+      this.tail = newTailNode;
+    }
+
     this.length -= 1;
-
     return poppedNode;
   }
 }

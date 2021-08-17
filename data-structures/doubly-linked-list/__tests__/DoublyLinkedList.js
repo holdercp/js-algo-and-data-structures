@@ -72,6 +72,16 @@ describe("DoublyLinkedList", () => {
       expect(node).toBe(undefined);
     });
 
+    test("it empties a list with only one node", () => {
+      const list = buildList(1);
+
+      list.pop();
+
+      expect(list.head).toBe(null);
+      expect(list.tail).toBe(null);
+      expect(list.length).toBe(0);
+    });
+
     test("it removes the last node in the list and returns it", () => {
       const list = buildList(3);
 
@@ -79,6 +89,7 @@ describe("DoublyLinkedList", () => {
 
       expect(node.value).toBe(3);
       expect(list.tail.value).toBe(2);
+      expect(list.tail.next).toBe(null);
       expect(list.head.next.value).toBe(2);
       expect(list.length).toBe(2);
     });
