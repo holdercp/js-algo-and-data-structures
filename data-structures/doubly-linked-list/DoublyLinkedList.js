@@ -43,6 +43,26 @@ class DoublyLinkedList {
     this.length -= 1;
     return poppedNode;
   }
+
+  shift() {
+    if (this.length === 0) return undefined;
+
+    const shiftedNode = this.head;
+    const newHeadNode = shiftedNode.next;
+
+    if (newHeadNode) {
+      this.head = shiftedNode.next;
+      this.head.previous = null;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+
+    shiftedNode.next = null;
+
+    this.length -= 1;
+    return shiftedNode;
+  }
 }
 
 export default DoublyLinkedList;

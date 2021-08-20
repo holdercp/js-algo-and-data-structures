@@ -103,4 +103,42 @@ describe("DoublyLinkedList", () => {
       expect(node.next).toBe(null);
     });
   });
+
+  describe("shift", () => {
+    test("returns undefined if the list is empty", () => {
+      const list = buildList();
+
+      const node = list.shift();
+
+      expect(node).toBe(undefined);
+    });
+
+    test("removes the first node in the list and returns it", () => {
+      const list = buildList(2);
+
+      const node = list.shift();
+
+      expect(list.length).toBe(1);
+      expect(list.head.value).toBe(2);
+      expect(list.head.previous).toBe(null);
+      expect(list.tail.value).toBe(2);
+
+      expect(node.value).toBe(1);
+      expect(node.next).toBe(null);
+    });
+
+    test("empties list if length is one", () => {
+      const list = buildList(1);
+
+      const node = list.shift();
+
+      expect(list.length).toBe(0);
+      expect(list.head).toBe(null);
+      expect(list.tail).toBe(null);
+
+      expect(node.value).toBe(1);
+      expect(node.next).toBe(null);
+      expect(node.previous).toBe(null);
+    });
+  });
 });
