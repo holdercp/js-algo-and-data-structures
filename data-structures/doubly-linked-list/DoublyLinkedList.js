@@ -79,6 +79,27 @@ class DoublyLinkedList {
 
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    const mid = Math.floor(this.length / 2);
+    const traverseFromHead = index <= mid;
+    const nextNodeProperty = traverseFromHead ? "next" : "previous";
+    let currentNode = traverseFromHead ? this.head : this.tail;
+
+    const checkCondition = (iteration) => {
+      return traverseFromHead
+        ? iteration < index
+        : iteration < this.length - index;
+    };
+
+    for (let i = traverseFromHead ? 0 : 1; checkCondition(i); i++) {
+      currentNode = currentNode[nextNodeProperty];
+    }
+
+    return currentNode;
+  }
 }
 
 export default DoublyLinkedList;

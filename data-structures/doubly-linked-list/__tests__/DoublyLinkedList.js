@@ -177,4 +177,28 @@ describe("DoublyLinkedList", () => {
       expect(res).toBe(list);
     });
   });
+
+  describe("get", () => {
+    test("if the index is out of bounds, it returns null", () => {
+      const list = buildList(2);
+
+      const res1 = list.get(-1);
+      const res2 = list.get(2);
+      const res3 = list.get(3);
+
+      expect(res1).toBeNull();
+      expect(res2).toBeNull();
+      expect(res3).toBeNull();
+    });
+
+    test("it returns the node at the given index", () => {
+      const list = buildList(10);
+
+      const res1 = list.get(4);
+      const res2 = list.get(8);
+
+      expect(res1.value).toBe(5);
+      expect(res2.value).toBe(9);
+    });
+  });
 });
