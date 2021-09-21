@@ -201,4 +201,41 @@ describe("DoublyLinkedList", () => {
       expect(res2.value).toBe(9);
     });
   });
+
+  describe("set", () => {
+    test("it replaces the value of the head", () => {
+      const list = buildList(2);
+
+      const res = list.set(0, 2);
+
+      expect(res).toBe(true);
+      expect(list.head.value).toBe(2);
+    });
+
+    test("it replaces the value of the tail", () => {
+      const list = buildList(2);
+
+      const res = list.set(1, 3);
+
+      expect(res).toBe(true);
+      expect(list.tail.value).toBe(3);
+    });
+
+    test("it replaces the given index with the given value", () => {
+      const list = buildList(3);
+
+      const res = list.set(1, 5);
+
+      expect(res).toBe(true);
+      expect(list.head.next.value).toBe(5);
+    });
+
+    test("it returns false if their is no node at the given index", () => {
+      const list = buildList(3);
+
+      const res = list.set(3, 5);
+
+      expect(res).toBe(false);
+    });
+  });
 });

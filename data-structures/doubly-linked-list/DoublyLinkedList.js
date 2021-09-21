@@ -95,6 +95,32 @@ class DoublyLinkedList {
 
     return currentNode;
   }
+
+  set(index, value) {
+    const node = this.get(index);
+
+    if (node) {
+      const newNode = new Node(value);
+
+      if (index === 0) {
+        this.head = newNode;
+        newNode.next = node.next;
+        node.next.previous = newNode;
+      } else if (index === this.length - 1) {
+        this.tail = newNode;
+        newNode.previous = node.previous;
+      } else {
+        newNode.next = node.next;
+        newNode.previous = node.previous;
+        node.next.previous = newNode;
+        node.previous.next = newNode;
+      }
+
+      return true;
+    }
+
+    return false;
+  }
 }
 
 export default DoublyLinkedList;
