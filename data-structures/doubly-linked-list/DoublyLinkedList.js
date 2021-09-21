@@ -85,17 +85,12 @@ class DoublyLinkedList {
 
     const mid = Math.floor(this.length / 2);
     const traverseFromHead = index <= mid;
-    const nextNodeProperty = traverseFromHead ? "next" : "previous";
+
+    let count = traverseFromHead ? 0 : this.length - 1;
     let currentNode = traverseFromHead ? this.head : this.tail;
-
-    const checkCondition = (iteration) => {
-      return traverseFromHead
-        ? iteration < index
-        : iteration < this.length - index;
-    };
-
-    for (let i = traverseFromHead ? 0 : 1; checkCondition(i); i++) {
-      currentNode = currentNode[nextNodeProperty];
+    while (count !== index) {
+      currentNode = traverseFromHead ? currentNode.next : currentNode.previous;
+      count = traverseFromHead ? count + 1 : count - 1;
     }
 
     return currentNode;
