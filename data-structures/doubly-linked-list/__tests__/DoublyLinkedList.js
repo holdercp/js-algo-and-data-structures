@@ -238,4 +238,47 @@ describe("DoublyLinkedList", () => {
       expect(res).toBe(false);
     });
   });
+
+  describe("insert", () => {
+    test("it retuns false if the index is out of bounds", () => {
+      const list = buildList(4);
+
+      const res1 = list.insert(-1, 10);
+      const res2 = list.insert(5, 10);
+
+      expect(res1).toBe(false);
+      expect(res2).toBe(false);
+      expect(list.length).toBe(4);
+    });
+
+    test("it correctly inserts at the beginning of the list", () => {
+      const list = buildList(4);
+
+      const res = list.insert(0, 10);
+
+      expect(res).toBe(true);
+      expect(list.length).toBe(5);
+      expect(list.head.value).toBe(10);
+    });
+
+    test("it correctly inserts at the end of the list", () => {
+      const list = buildList(4);
+
+      const res = list.insert(4, 10);
+
+      expect(res).toBe(true);
+      expect(list.length).toBe(5);
+      expect(list.tail.value).toBe(10);
+    });
+
+    test("it inserts a new node at the given postion", () => {
+      const list = buildList(4);
+
+      const res = list.insert(1, 10);
+
+      expect(res).toBe(true);
+      expect(list.length).toBe(5);
+      expect(list.head.next.value).toBe(10);
+    });
+  });
 });
