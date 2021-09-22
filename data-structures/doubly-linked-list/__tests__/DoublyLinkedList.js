@@ -281,4 +281,52 @@ describe("DoublyLinkedList", () => {
       expect(list.head.next.value).toBe(10);
     });
   });
+
+  describe("remove", () => {
+    test("it returns undefined if the given index is out of bounds", () => {
+      const list = buildList(3);
+
+      const res1 = list.remove(-1);
+      const res2 = list.remove(3);
+
+      expect(res1).toBe(undefined);
+      expect(res2).toBe(undefined);
+    });
+
+    test("it removes the first node in the list", () => {
+      const list = buildList(3);
+
+      const res = list.remove(0);
+
+      expect(res.value).toBe(1);
+      expect(list.length).toBe(2);
+      expect(list.head.value).toBe(2);
+    });
+
+    test("it removes the last node in the list", () => {
+      const list = buildList(3);
+
+      const res = list.remove(2);
+
+      expect(res.value).toBe(3);
+      expect(list.length).toBe(2);
+      expect(list.tail.value).toBe(2);
+    });
+
+    test("it removes the node from the list", () => {
+      const list = buildList(3);
+
+      const res = list.remove(1);
+
+      expect(res.value).toBe(2);
+      expect(res.next).toBe(null);
+      expect(res.previous).toBe(null);
+
+      expect(list.length).toBe(2);
+      expect(list.head.value).toBe(1);
+      expect(list.head.next.value).toBe(3);
+      expect(list.tail.value).toBe(3);
+      expect(list.tail.previous.value).toBe(1);
+    });
+  });
 });
